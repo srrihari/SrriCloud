@@ -112,6 +112,10 @@ function App() {
     JSON.parse(localStorage.getItem("favorites")) || [],
   );
   const [codeContent, setCodeContent] = useState("");
+  const [zoom, setZoom] = useState(0);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
 
   const toggleFavorite = (name) => {
     const updated = favorites.includes(name)
@@ -158,6 +162,10 @@ function App() {
   };
 
   const openPreview = async (file) => {
+    // Reset viewer every time a new file is opened
+    setZoom(1);
+    setPosition({ x: 0, y: 0 });
+
     const url = await getSecureUrl(file.name);
 
     if (getKind(file.name) === "Code") {
@@ -166,7 +174,10 @@ function App() {
       setCodeContent(text);
     }
 
-    setPreviewFile({ ...file, previewUrl: url });
+    setPreviewFile({
+      ...file,
+      previewUrl: url,
+    });
   };
 
   const loadFiles = async () => {
@@ -646,11 +657,65 @@ function App() {
               </div>
 
               {getKind(previewFile.name) === "Image" && (
-                <img
-                  className="previewImage"
-                  src={previewFile.previewUrl}
-                  alt={previewFile.name}
-                />
+                <>
+                  <div className="imageToolbar">
+                    <button
+                      onClick={() => setZoom((z) => Math.max(0.2, z - 0.2))}
+                    >
+                      −
+                    </button>
+
+                    <span>{Math.round(zoom * 100)}%</span>
+
+                    <button onClick={() => setZoom((z) => z + 0.2)}>+</button>
+
+                    <button
+                      onClick={() => {
+                        setZoom(1);
+                        setPosition({ x: 0, y: 0 });
+                      }}
+                    >
+                      Reset
+                    </button>
+                  </div>
+
+                  <div
+                    className="imageViewer"
+                    onWheel={(e) => {
+                      e.preventDefault();
+
+                      if (e.deltaY < 0) setZoom((z) => Math.min(z + 0.1, 8));
+                      else setZoom((z) => Math.max(z - 0.1, 0.2));
+                    }}
+                    onMouseDown={(e) => {
+                      setDragging(true);
+                      setStartPos({
+                        x: e.clientX - position.x,
+                        y: e.clientY - position.y,
+                      });
+                    }}
+                    onMouseMove={(e) => {
+                      if (!dragging) return;
+
+                      setPosition({
+                        x: e.clientX - startPos.x,
+                        y: e.clientY - startPos.y,
+                      });
+                    }}
+                    onMouseUp={() => setDragging(false)}
+                    onMouseLeave={() => setDragging(false)}
+                  >
+                    <img
+                      src={previewFile.previewUrl}
+                      alt={previewFile.name}
+                      draggable={false}
+                      className="previewImage"
+                      style={{
+                        transform: `translate(${position.x}px, ${position.y}px) scale(${zoom || 1})`,
+                      }}
+                    />
+                  </div>
+                </>
               )}
 
               {getKind(previewFile.name) === "PDF document" && (

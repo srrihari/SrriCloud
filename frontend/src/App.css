@@ -842,3 +842,52 @@ body {
   object-fit: contain;
 }
 }
+
+.imageToolbar {
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.imageToolbar button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  background: #f3f4f6;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.imageToolbar span {
+  width: 70px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.imageViewer {
+  width: 100%;
+  height: calc(100% - 55px);
+  overflow: hidden;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+}
+
+.imageViewer:active {
+  cursor: grabbing;
+}
+
+.previewImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transform-origin: center center;
+  user-select: none;
+  transition: transform 0.05s linear;
+}
