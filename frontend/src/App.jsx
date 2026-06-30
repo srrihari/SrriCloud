@@ -290,25 +290,59 @@ function App() {
 
   if (!secret) {
     return (
-      <div className="loginPage">
-        <div className="loginBox">
-          <h1 style={{ display: "flex", justifyContent: "center", margin: 0 }}>
-            <img src="/logo.png" alt="" width={"100px"} />
-          </h1>
+      <div className="icloudLoginPage">
+        <div className="icloudLoginCard">
+          <div className="icloudOrb">
+            <div className="icloudLogo">
+              <img src="/logo.png" alt="Srri Drive" />
+            </div>
+          </div>
 
-          <p>Enter your password to continue</p>
+          <h1>Sign in to Srri Drive</h1>
 
           <input
+            className="icloudInput"
             type="password"
-            placeholder="Password"
+            placeholder="Enter Drive Password"
             value={password}
+            autoFocus
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") login();
             }}
           />
 
-          <button onClick={login}>Unlock</button>
+          <button
+            className="icloudContinue"
+            onClick={login}
+            disabled={!password}
+          >
+            Continue
+          </button>
+
+          <p className="icloudInfo">
+            Your Srri Drive password is used to securely unlock your personal
+            cloud storage and access your files, previews, folders, and shared
+            links.
+          </p>
+
+          <div className="icloudButtons">
+            <button
+              className="icloudPrimary"
+              onClick={login}
+              disabled={!password}
+            >
+              Continue
+            </button>
+
+            <button className="icloudDarkBtn" disabled>
+              ☁️ Srri Drive
+            </button>
+          </div>
+
+          <p className="icloudFooterText">
+            Secure personal cloud powered by Azure Blob Storage.
+          </p>
         </div>
       </div>
     );
