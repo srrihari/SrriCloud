@@ -65,13 +65,23 @@ function PublicSharePage({ shareId }) {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    axios.get(`${API}/share/${shareId}`).then((res) => {
-      setFile(res.data);
-    });
+    axios
+      .get(`${API}/share/${shareId}`)
+      .then((res) => {
+        setFile(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        setFile({ error: "Shared file not found or backend unavailable." });
+      });
   }, [shareId]);
 
   if (!file) {
     return <div className="sharePage">Loading shared file...</div>;
+  }
+
+  if (file?.error) {
+    return <div className="sharePage">{file.error}</div>;
   }
 
   return (
