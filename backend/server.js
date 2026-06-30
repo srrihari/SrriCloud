@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
 const dotenv = require("dotenv");
-const fs = require("fs");
+
 const { v4: uuidv4 } = require("uuid");
 const {
   BlobServiceClient,
@@ -46,6 +46,40 @@ const blobServiceClient = BlobServiceClient.fromConnectionString(
 const containerClient = blobServiceClient.getContainerClient(
   process.env.AZURE_CONTAINER_NAME,
 );
+
+const SHARES_BLOB = "metadata/shares.json";
+
+async function readShares() {
+  const blobClient = containerClient.getBlobClient(SHARES_BLOB);
+
+  try {
+    const download = await blobClient.download();
+
+    const chunks = [];
+
+    for await (const chunk of download.readableStreamBody) {
+      chunks.push(chunk);
+    }
+
+    return JSON.parse(Buffer.concat(chunks).toString("utf8"));
+  } catch {
+    return [];
+  }
+}
+
+async function writeShares(shares) {
+  const blockBlobClient = containerClient.getBlockBlobClient(SHARES_BLOB);
+
+  await blockBlobClient.uploadData(
+    Buffer.from(JSON.stringify(shares, null, 2)),
+    {
+      overwrite: true,
+      blobHTTPHeaders: {
+        blobContentType: "application/json",
+      },
+    },
+  );
+}
 
 app.post("/upload", protect, upload.single("file"), async (req, res) => {
   try {
@@ -255,7 +289,7 @@ app.post("/share", protect, async (req, res) => {
   try {
     const { fileName } = req.body;
 
-    const shares = JSON.parse(fs.readFileSync("shares.json"));
+    const shares = await readShares();
 
     const id = uuidv4();
 
@@ -268,7 +302,7 @@ app.post("/share", protect, async (req, res) => {
       views: 0,
     });
 
-    fs.writeFileSync("shares.json", JSON.stringify(shares, null, 2));
+    await writeShares(shares);
 
     res.json({
       url: `http://drive.srrihari.app/share/${id}`,
@@ -284,7 +318,7 @@ app.get("/share/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const shares = JSON.parse(fs.readFileSync("shares.json"));
+    const shares = await readShares();
     const share = shares.find((item) => item.id === id);
 
     if (!share) {
@@ -293,7 +327,7 @@ app.get("/share/:id", async (req, res) => {
 
     share.views = (share.views || 0) + 1;
 
-    fs.writeFileSync("shares.json", JSON.stringify(shares, null, 2));
+    await writeShares(shares);
 
     const sharedKeyCredential = new StorageSharedKeyCredential(
       process.env.AZURE_STORAGE_ACCOUNT_NAME,
