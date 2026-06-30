@@ -63,6 +63,10 @@ function getTotalSize(files) {
 
 function PublicSharePage({ shareId }) {
   const [file, setFile] = useState(null);
+  const [zoom, setZoom] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     axios
@@ -92,7 +96,72 @@ function PublicSharePage({ shareId }) {
         </h1>
         <h2>{file.fileName.replace(/^\d+-/, "")}</h2>
 
-        <iframe className="sharePreview" src={file.url} title={file.fileName} />
+        {getKind(file.fileName) === "Image" ? (
+          <>
+            <div className="imageToolbar">
+              <button onClick={() => setZoom((z) => Math.max(0.2, z - 0.2))}>
+                −
+              </button>
+
+              <span>{Math.round(zoom * 100)}%</span>
+
+              <button onClick={() => setZoom((z) => Math.min(8, z + 0.2))}>
+                +
+              </button>
+
+              <button
+                onClick={() => {
+                  setZoom(1);
+                  setPosition({ x: 0, y: 0 });
+                }}
+              >
+                Reset
+              </button>
+            </div>
+
+            <div
+              className="imageViewer shareImageViewer"
+              onWheel={(e) => {
+                e.preventDefault();
+                setZoom((z) =>
+                  e.deltaY < 0 ? Math.min(z + 0.1, 8) : Math.max(z - 0.1, 0.2),
+                );
+              }}
+              onMouseDown={(e) => {
+                setDragging(true);
+                setStartPos({
+                  x: e.clientX - position.x,
+                  y: e.clientY - position.y,
+                });
+              }}
+              onMouseMove={(e) => {
+                if (!dragging) return;
+                setPosition({
+                  x: e.clientX - startPos.x,
+                  y: e.clientY - startPos.y,
+                });
+              }}
+              onMouseUp={() => setDragging(false)}
+              onMouseLeave={() => setDragging(false)}
+            >
+              <img
+                src={file.url}
+                alt={file.fileName}
+                draggable={false}
+                className="previewImage"
+                style={{
+                  transform: `translate(${position.x}px, ${position.y}px) scale(${zoom})`,
+                }}
+              />
+            </div>
+          </>
+        ) : (
+          <iframe
+            className="sharePreview"
+            src={file.url}
+            title={file.fileName}
+          />
+        )}
 
         <a href={file.url} target="_blank" rel="noopener noreferrer">
           Download File
