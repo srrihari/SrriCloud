@@ -69,21 +69,59 @@ Srri Drive can preview many file types directly in the browser:
 - Azure Blob Storage
 - Cloudflare DNS
 
+
+## ✨ Features
+
+- Secure file upload and download
+- File preview support
+- Temporary share links
+- Private Azure Blob container
+- Password-protected frontend
+- Responsive UI
+
+## 🛠️ Tech Stack
+
+- React + Vite
+- Node.js + Express
+- Azure Blob Storage
+- Azure Static Web Apps
+- Azure App Service
+
+## 🔐 Security
+
+- Storage container is private
+- Access is handled through backend-generated temporary links
+- Secrets are stored using environment variables
+- Sensitive configuration files are not committed to GitHub
+
+## 📂 Project Structure
+
+```text
+SrriCloud/
+├── frontend/
+├── backend/
+└── README.md
+
+
+```
+
+## 📌 Future Improvements
+
+- Folder upload
+- Drag & Drop upload
+- File version history
+- Folder sharing
+- AI-powered search
+- OCR document search
+- Mobile application
+- End-to-end encryption
+
 ---
 
-## 🧩 Architecture
+## 👨‍💻 Author
 
-```txt
-User
- │
- ▼
-React Frontend
-Azure Static Web Apps
- │
- ▼
-Express Backend
-Azure App Service
- │
- ▼
-Azure Blob Storage
-Private Container
+**Srri Hari T R**
+
+- 🌐 Portfolio: https://srrihari.app
+- 💼 LinkedIn: https://www.linkedin.com/in/srrihari/
+- 🐙 GitHub: https://github.com/srrihari
