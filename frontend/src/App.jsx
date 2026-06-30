@@ -430,9 +430,7 @@ function App() {
             </button>
           </div>
 
-          <p className="icloudFooterText">
-            Secure personal cloud powered by Azure Blob Storage.
-          </p>
+          <p className="icloudFooterText">Secure personal cloud.</p>
         </div>
       </div>
     );
