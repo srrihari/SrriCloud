@@ -3,6 +3,8 @@ import axios from "axios";
 import "./App.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { IoMdTime } from "react-icons/io";
+import { IoTrashBin } from "react-icons/io5";
 
 const API =
   "https://srribackend-gjhpafapfjgcbgfx.southindia-01.azurewebsites.net/";
@@ -383,15 +385,25 @@ function App() {
           <button
             className={view === "recents" ? "active" : ""}
             onClick={() => setView("recents")}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
           >
-            🕘 Recents
+            <IoMdTime style={{ color: "blue" }} /> Recents
           </button>
 
           <button
             className={view === "trash" ? "active" : ""}
             onClick={() => setView("trash")}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
           >
-            🗑️ Recently Deleted
+            <IoTrashBin style={{ color: "blue" }} /> Recently Deleted
           </button>
         </nav>
 
