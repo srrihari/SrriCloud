@@ -4,7 +4,6 @@
        width="200">
 </p>
 
-A full-stack personal cloud storage platform built with **React, Node.js, Express, and Azure Blob Storage**.  
 Srri Drive provides secure file upload, preview, sharing, trash management, folders, and a Google Drive-style user experience.
 
 ---
