@@ -77,7 +77,9 @@ function PublicSharePage({ shareId }) {
   return (
     <div className="sharePage">
       <div className="shareBox">
-        <h1>☁️ Srri Drive</h1>
+        <h1 style={{ display: "flex", justifyContent: "center", margin: 0 }}>
+          <img src="/logo.png" alt="" width={"100px"} />
+        </h1>
         <h2>{file.fileName.replace(/^\d+-/, "")}</h2>
 
         <iframe className="sharePreview" src={file.url} title={file.fileName} />
@@ -290,7 +292,9 @@ function App() {
     return (
       <div className="loginPage">
         <div className="loginBox">
-          <h1>☁️ Srri Drive</h1>
+          <h1 style={{ display: "flex", justifyContent: "center", margin: 0 }}>
+            <img src="/logo.png" alt="" width={"100px"} />
+          </h1>
 
           <p>Enter your password to continue</p>
 
@@ -352,7 +356,9 @@ function App() {
         </div>
       )}
       <aside className="sidebar">
-        <h2>☁️ Srri Drive</h2>
+        <h2 style={{ display: "flex", justifyContent: "center", margin: 0 }}>
+          <img src="/logo.png" alt="" width={"100px"} />
+        </h2>
         <button
           onClick={logout}
           className="logoutBtn"
