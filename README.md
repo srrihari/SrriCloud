@@ -1,16 +1,127 @@
-# React + Vite
+# ☁️ Srri Drive
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A full-stack personal cloud storage platform built with **React, Node.js, Express, and Azure Blob Storage**.  
+Srri Drive provides secure file upload, preview, sharing, trash management, folders, and a Google Drive-style user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Demo
 
-## React Compiler
+🌐 **App:** https://drive.srrihari.app  
+🔗 **Backend:** Azure App Service  
+📦 **Storage:** Azure Blob Storage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- 🔐 Password-protected personal drive
+- 📁 File and folder management
+- ⬆️ Single and multiple file uploads
+- 🖱️ Google Drive-style drag and drop upload
+- 📥 Secure downloads using Azure SAS URLs
+- 🔗 Public share links for individual files
+- 🗑️ Trash, restore, and permanent delete
+- 🔍 Search files
+- ↕️ Sort by name, date, and size
+- 🌙 Dark mode
+- 🧱 Grid and list views
+- 📊 Storage usage indicator
+- 📱 Responsive UI
+
+---
+
+## 👀 File Preview Support
+
+Srri Drive can preview many file types directly in the browser:
+
+| Type | Preview |
+|------|---------|
+| Images | ✅ |
+| PDF | ✅ |
+| Code files | ✅ Syntax highlighting |
+| Word documents | ✅ |
+| Excel sheets | ✅ |
+| PowerPoint files | ✅ |
+| Videos | ✅ |
+| Audio | ✅ |
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React
+- Vite
+- Axios
+- CSS
+- React Syntax Highlighter
+
+### Backend
+- Node.js
+- Express.js
+- Multer
+- Azure Storage Blob SDK
+
+### Cloud
+- Azure Static Web Apps
+- Azure App Service
+- Azure Blob Storage
+- Cloudflare DNS
+
+
+## ✨ Features
+
+- Secure file upload and download
+- File preview support
+- Temporary share links
+- Private Azure Blob container
+- Password-protected frontend
+- Responsive UI
+
+## 🛠️ Tech Stack
+
+- React + Vite
+- Node.js + Express
+- Azure Blob Storage
+- Azure Static Web Apps
+- Azure App Service
+
+## 🔐 Security
+
+- Storage container is private
+- Access is handled through backend-generated temporary links
+- Secrets are stored using environment variables
+- Sensitive configuration files are not committed to GitHub
+
+## 📂 Project Structure
+
+```text
+SrriCloud/
+├── frontend/
+├── backend/
+└── README.md
+
+
+```
+
+## 📌 Future Improvements
+
+- Folder upload
+- Drag & Drop upload
+- File version history
+- Folder sharing
+- AI-powered search
+- OCR document search
+- Mobile application
+- End-to-end encryption
+
+---
+
+## 👨‍💻 Author
+
+**Srri Hari T R**
+
+- 🌐 Portfolio: https://srrihari.app
+- 💼 LinkedIn: https://www.linkedin.com/in/srrihari/
+- 🐙 GitHub: https://github.com/srrihari
