@@ -1,4 +1,8 @@
-# ☁️ Srri Drive
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cd2bcdaa-36c1-453a-aca7-52eaa123173a"
+       alt="Srri Drive"
+       width="400">
+</p>
 
 A full-stack personal cloud storage platform built with **React, Node.js, Express, and Azure Blob Storage**.  
 Srri Drive provides secure file upload, preview, sharing, trash management, folders, and a Google Drive-style user experience.
