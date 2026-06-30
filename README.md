@@ -108,18 +108,6 @@ SrriCloud/
 
 ```
 
-## 📌 Future Improvements
-
-- Folder upload
-- Drag & Drop upload
-- File version history
-- Folder sharing
-- AI-powered search
-- OCR document search
-- Mobile application
-- End-to-end encryption
-
----
 
 ## 👨‍💻 Author
 
