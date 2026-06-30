@@ -4,7 +4,8 @@ import "./App.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const API = "http://localhost:5000";
+const API =
+  "https://srribackend-gjhpafapfjgcbgfx.southindia-01.azurewebsites.net/";
 
 function getKind(name) {
   const ext = name.split(".").pop()?.toLowerCase();

@@ -24,7 +24,17 @@ const protect = (req, res, next) => {
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://nice-glacier-091f23d10.7.azurestaticapps.net",
+      "https://drive.srrihari.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -261,7 +271,7 @@ app.post("/share", protect, async (req, res) => {
     fs.writeFileSync("shares.json", JSON.stringify(shares, null, 2));
 
     res.json({
-      url: `http://localhost:5173/share/${id}`,
+      url: `http://drive.srrihari.app/share/${id}`,
     });
   } catch (err) {
     res.status(500).json({
