@@ -2,9 +2,9 @@
   <img src="https://github.com/user-attachments/assets/cd2bcdaa-36c1-453a-aca7-52eaa123173a"
        alt="Srri Drive"
        width="200">
-</p>
 
-Srri Drive provides secure file upload, preview, sharing, trash management, folders, and a Google Drive-style user experience.
+<h4 align="center"> Srri Drive provides secure file upload, preview, sharing, trash management, folders, and a Google Drive-style user experience.</h4>
+</p>
 
 ---
 
