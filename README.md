@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/cd2bcdaa-36c1-453a-aca7-52eaa123173a"
        alt="Srri Drive"
-       width="400">
+       width="200">
 </p>
 
 A full-stack personal cloud storage platform built with **React, Node.js, Express, and Azure Blob Storage**.  
